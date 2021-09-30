@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  teste-postgres-compose:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/paulobasilio/docker/postgres:/var/lib/postgresql/data
+
+  teste-pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "paulobasilio@nasajon.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "123456789"
+    ports:
+      - "80:80"
+    depends_on:
+      - teste-postgres-compose
